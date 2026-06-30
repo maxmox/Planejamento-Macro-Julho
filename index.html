@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DECO-KO — Planejamento Macro Jul/Ago 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --bg: #07090f;
+  --surface: rgba(15,20,35,0.92);
+  --surface2: rgba(25,32,52,0.85);
+  --accent: #3b82f6;
+  --accent2: #6366f1;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --orange: #f97316;
+  --cyan: #06b6d4;
+  --purple: #a855f7;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --border: rgba(255,255,255,0.06);
+  --radius: 16px;
+  --glow: 0 0 40px rgba(59,130,246,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 80% 60% at 20% 10%,rgba(59,130,246,0.06),transparent),
+  radial-gradient(ellipse 60% 50% at 80% 90%,rgba(99,102,241,0.04),transparent),
+  radial-gradient(ellipse 40% 40% at 50% 50%,rgba(6,182,212,0.03),transparent);
+  pointer-events:none;z-index:0}
+.app{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:24px 32px 80px}
+
+/* Header */
+.header{text-align:center;padding:48px 0 40px}
+.header::after{content:'';display:block;width:120px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));margin:24px auto 0;border-radius:2px}
+.badge{display:inline-block;padding:6px 18px;border-radius:24px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.badge-mission{background:rgba(59,130,246,0.12);color:var(--accent);border:1px solid rgba(59,130,246,0.25)}
+.header h1{font-size:clamp(28px,4vw,48px);font-weight:900;background:linear-gradient(135deg,#fff 0%,#93c5fd 50%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.15;margin-bottom:8px}
+.header .subtitle{font-size:15px;color:var(--text2)}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:32px 0}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;position:relative;overflow:hidden;transition:transform .2s,border-color .3s}
+.kpi:hover{transform:translateY(-2px);border-color:rgba(59,130,246,0.2)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.kpi.blue::before{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.kpi.green::before{background:linear-gradient(90deg,var(--green),#34d399)}
+.kpi.gold::before{background:linear-gradient(90deg,var(--gold),var(--orange))}
+.kpi.cyan::before{background:linear-gradient(90deg,var(--cyan),#22d3ee)}
+.kpi.red::before{background:linear-gradient(90deg,var(--red),#f87171)}
+.kpi.purple::before{background:linear-gradient(90deg,var(--purple),#c084fc)}
+.kpi.orange::before{background:linear-gradient(90deg,var(--orange),#fb923c)}
+.kpi .icon{font-size:22px;margin-bottom:6px}
+.kpi .label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:2px}
+.kpi .value{font-size:26px;font-weight:800;color:#fff}
+.kpi .detail{font-size:10px;color:var(--text2);margin-top:3px;line-height:1.4}
+
+/* Section */
+.section{margin:48px 0 20px}
+.section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:8px}
+.section-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.section h2{font-size:clamp(20px,3vw,30px);font-weight:800;color:#fff}
+.section p{font-size:14px;color:var(--text2);margin-top:4px;max-width:700px}
+
+/* Panels */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;box-shadow:var(--glow)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th{background:rgba(59,130,246,0.08);color:var(--accent);font-weight:700;padding:10px 12px;text-align:left;border-bottom:2px solid rgba(59,130,246,0.15);white-space:nowrap;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text2);transition:background .15s}
+tr:hover td{background:rgba(255,255,255,0.02)}
+tr.weekend td{background:rgba(245,158,11,0.04);color:var(--gold)}
+tr.holiday td{background:rgba(239,68,68,0.06);color:var(--red)}
+tr.alert-row td{background:rgba(239,68,68,0.08)!important;color:var(--red)!important}
+tr.transition td{background:rgba(6,182,212,0.06);color:var(--cyan)}
+tr.milestone td{background:rgba(16,185,129,0.06);color:var(--green);font-weight:600}
+.tag{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.tag-prod{background:rgba(16,185,129,0.12);color:var(--green)}
+.tag-folga{background:rgba(245,158,11,0.12);color:var(--gold)}
+.tag-feriado{background:rgba(239,68,68,0.12);color:var(--red)}
+.tag-copa{background:rgba(99,102,241,0.12);color:var(--accent2)}
+.tag-alert{background:rgba(239,68,68,0.15);color:var(--red)}
+.tag-terra{background:rgba(249,115,22,0.12);color:var(--orange)}
+.tag-canal{background:rgba(168,85,247,0.12);color:var(--purple)}
+
+/* Progress */
+.progress-container{margin:14px 0}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+.progress-label span:first-child{color:var(--text2)}
+.progress-label span:last-child{color:#fff;font-weight:700}
+.progress-bar{height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.progress-fill.blue{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.progress-fill.green{background:linear-gradient(90deg,var(--green),#34d399)}
+.progress-fill.gold{background:linear-gradient(90deg,var(--gold),var(--orange))}
+.progress-fill.cyan{background:linear-gradient(90deg,var(--cyan),#22d3ee)}
+.progress-fill.red{background:linear-gradient(90deg,var(--red),#f87171)}
+
+/* Insumos */
+.insumos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.insumo-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;transition:border-color .2s}
+.insumo-card:hover{border-color:rgba(59,130,246,0.2)}
+.insumo-card.deficit{border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.04)}
+.insumo-card.ok{border-color:rgba(16,185,129,0.2)}
+.insumo-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.insumo-icon.cement{background:rgba(59,130,246,0.12)}
+.insumo-icon.aggregate{background:rgba(249,115,22,0.12)}
+.insumo-icon.sand{background:rgba(245,158,11,0.12)}
+.insumo-icon.chemical{background:rgba(168,85,247,0.12)}
+.insumo-icon.steel{background:rgba(107,114,128,0.12)}
+.insumo-icon.geo{background:rgba(16,185,129,0.12)}
+.insumo-info{flex:1;min-width:0}
+.insumo-name{font-size:12px;font-weight:700;color:#fff;margin-bottom:1px}
+.insumo-per{font-size:10px;color:var(--text3)}
+.insumo-total{text-align:right;white-space:nowrap}
+.insumo-total .val{font-size:17px;font-weight:800;color:#fff;display:block}
+.insumo-total .unit{font-size:9px;color:var(--text2)}
+
+/* Alerts */
+.alert-box{display:flex;align-items:flex-start;gap:12px;border-radius:12px;padding:14px 18px;margin:10px 0;font-size:12px;line-height:1.5}
+.alert-box .icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.alert-danger{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:var(--red)}
+.alert-warning{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);color:var(--gold)}
+.alert-info{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);color:var(--accent)}
+.alert-success{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:var(--green)}
+
+/* Timeline */
+.timeline{position:relative;padding:16px 0}
+.timeline::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--cyan),var(--orange),var(--green));border-radius:1px}
+.tl-item{position:relative;padding-left:48px;margin-bottom:20px}
+.tl-dot{position:absolute;left:11px;top:3px;width:16px;height:16px;border-radius:50%;border:3px solid var(--bg)}
+.tl-date{font-size:11px;font-weight:700;color:var(--accent);margin-bottom:1px}
+.tl-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+.tl-desc{font-size:11px;color:var(--text2);line-height:1.5}
+
+/* Compare */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.compare-col{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.compare-col h3{font-size:15px;font-weight:700;margin-bottom:14px}
+.compare-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.compare-row:last-child{border:none}
+.compare-row .lbl{color:var(--text2)}
+.compare-row .val{font-weight:700;color:#fff}
+
+/* Edit notice */
+.edit-notice{display:flex;align-items:center;gap:12px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:12px 18px;margin-bottom:28px;font-size:12px;color:var(--gold)}
+.edit-notice .icon{font-size:18px;flex-shrink:0}
+.edit-notice code{background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:4px;font-size:10px}
+
+/* Note cards */
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.note-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.note-card .nc-icon{font-size:20px}
+.note-card .nc-title{font-size:13px;font-weight:700;color:#fff}
+.note-card .nc-desc{font-size:11px;color:var(--text2);line-height:1.5}
+
+/* Footer */
+.footer{text-align:center;padding:40px 0 20px;font-size:11px;color:var(--text3);border-top:1px solid var(--border);margin-top:40px}
+
+@media(max-width:768px){
+  .app{padding:16px}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .compare-grid{grid-template-columns:1fr}
+  .insumos-grid,.notes-grid{grid-template-columns:1fr}
+}
+@media print {
+  body::before { display: none !important; }
+  body { background: #07090f !important; color: #e2e8f0 !important; overflow: visible !important; height: auto !important; position: static !important; }
+  .app { overflow: visible !important; position: static !important; }
+  .panel { page-break-inside: avoid; }
+  .edit-notice { display: none !important; }
+  @page { size: portrait; margin: 15mm; }
+}
+.fade-in{animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in:nth-child(2){animation-delay:.05s}
+.fade-in:nth-child(3){animation-delay:.1s}
+.fade-in:nth-child(4){animation-delay:.15s}
+.fade-in:nth-child(5){animation-delay:.2s}
+.fade-in:nth-child(6){animation-delay:.25s}
+.fade-in:nth-child(7){animation-delay:.3s}
+.fade-in:nth-child(8){animation-delay:.35s}
+</style>
+</head>
+<body>
+
+<div class="app" id="app"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════════
+   ██████   █████  ██████   █████  ███    ███ ███████ ████████ ██████   ██████  ███████
+   ██   ██ ██   ██ ██   ██ ██   ██ ████  ████ ██         ██    ██   ██ ██    ██ ██
+   ██████  ███████ ██████  ███████ ██ ████ ██ █████      ██    ██████  ██    ██ ███████
+   ██      ██   ██ ██   ██ ██   ██ ██  ██  ██ ██         ██    ██   ██ ██    ██      ██
+   ██      ██   ██ ██   ██ ██   ██ ██      ██ ███████    ██    ██   ██  ██████  ███████
+
+   ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  ALTERE OS VALORES ABAIXO PARA RECONFIGURAR TODO O PLANEJAMENTO       ║
+   ║  Após alterar, salve o arquivo e recarregue no navegador (F5)         ║
+   ╚══════════════════════════════════════════════════════════════════════════╝
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+const CONFIG = {
+
+  // ─── MISSÃO ────────────────────────────────────────────────
+  missao: {
+    nome: "DECO-KO",
+    local: "Aeródromo de Coari-AM (SWKO)",
+    periodo: { inicio: "2026-07-02", fim: "2026-08-13" },
+    expediente: "07h – 17h",
+    diasTrabalho: [1, 2, 3, 4, 5],  // 1=Seg ... 5=Sex
+  },
+
+  // ─── FERIADOS NACIONAIS (YYYY-MM-DD) ──────────────────────
+  feriadosNacionais: [
+    // Nenhum feriado nacional em Jul/Ago 2026
+  ],
+
+  // ─── JOGOS DO BRASIL NA COPA (dias sem trabalho) ──────────
+  jogosBrasilCopa: [
+    "2026-07-05",  // Oitavas (Domingo — já é folga)
+    "2026-07-11",  // Quartas (Sábado — já é folga)
+    "2026-07-15",  // Semifinal (Quarta) ⚠️ DIA PRODUTIVO PERDIDO
+    "2026-07-19",  // Final (Domingo — já é folga)
+  ],
+
+  // ─── ATIVIDADE PRINCIPAL: PLACAS DE CONCRETO ──────────────
+  placas: {
+    totalExecutar: 546,
+    producaoDiaria: 26,    // placas/dia produtivo
+    dimensoes: { espessura_cm: 29, largura_m: 3.75, comprimento_m: 4.5 },
+    insumosPorPlaca: {
+      cimentoCP40_sacos: 50,
+      brita0_m3: 1.3,
+      brita1_m3: 3.0,
+      areia_m3: 2.35,
+      barrasTransferencia_un: 12.79,
+      geocomposto_m2: 19,
+    },
+  },
+
+  // ─── ADITIVOS (por placa, 2 tipos) ────────────────────────
+  aditivos: {
+    eucon350: {
+      nome: "Eucon 350",
+      consumoTotal_L: 4000,        // litros totais na missão
+      tamborVolume_L: 200,         // litros por tambor
+      estoqueTambores: 17,         // tambores em estoque
+      tamboresNecessarios: 20,     // 4000/200 = 20 tambores
+      // Resultado: faltam 3 tambores ⚠️
+    },
+    eucon370: {
+      nome: "Eucon 370",
+      consumoTotal_L: 4000,        // litros totais na missão
+      tamborVolume_L: 200,         // litros por tambor
+      estoqueTambores: 7,          // tambores em estoque
+      tamboresNecessarios: 20,     // 4000/200 = 20 tambores
+      // Resultado: faltam 13 tambores ⚠️
+    },
+  },
+
+  // ─── ESTOQUES ─────────────────────────────────────────────
+  estoques: {
+    barrasTransferencia: 4282,     // unidades em estoque
+    cimentoCP40_sacos: 27260,      // sacos em estoque
+    cimentoCP32_sacos: 400,        // sacos em estoque (para canaletas e reciclagem)
+    cimentoCP32_canaletas_sacos: 477, // sacos CP32 consumidos pelas canaletas de concreto
+    perdaCimento_pct: 2,           // % de perda normal de cimento
+    geocomposto_suficiente: true,  // verificado suficiente
+    lona_suficiente: true,         // verificado suficiente
+  },
+
+  // ─── RECICLAGEM (alta prioridade) ─────────────────────────
+  reciclagem: {
+    totalExecutar_m2: 4400,
+    producaoDiaria_m2: 400,        // m²/dia bruto
+    fatorChuva: 0.75,              // 75% produtividade por chuva (dá 300 m²/dia efetivo)
+    insumos: {
+      cimentoCP32_sacos_por_m2: 0.42,
+    },
+  },
+
+  // ─── CANALETAS DE CONCRETO ────────────────────────────────
+  canaletas: {
+    totalFaltantes: 128,           // unidades faltantes a produzir
+    diasServico: 4,                // dias para executar
+    emParalelo: true,              // junto com outras atividades
+  },
+
+  // ─── CANALETAS DE DRENAGEM (após concretagem) ─────────────
+  canalasDrenagem: {
+    descricao: "Alocação das canaletas de drenagem",
+    inicioAposConcretagem: true,   // inicia após finalizar placas
+  },
+
+  // ─── TERRAPLENAGEM (após reciclagem) ──────────────────────
+  terraplenagem: {
+    descricao: "Terraplenagem da faixa de pista",
+    inicioAposReciclagem: true,
+  },
+
+  // ─── ATIVIDADES CONTÍNUAS (ao longo de todo o PAA) ────────
+  atividadesContinuas: [
+    { nome: "Trincheira Drenante", icone: "🔲", prioridade: "média" },
+    { nome: "Sinalização Horizontal", icone: "🚧", prioridade: "média" },
+    { nome: "Corte e Selagem", icone: "✂️", prioridade: "média" },
+  ],
+};
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   FIM DOS PARÂMETROS — Código abaixo gera o planejamento automaticamente
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+// ─── UTILS ──────────────────────────────────────────────────
+function parseDate(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function fmtDate(d){return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'})}
+function fmtDateShort(d){return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}
+function fmtNum(n){return n.toLocaleString('pt-BR',{maximumFractionDigits:1})}
+function fmtInt(n){return Math.round(n).toLocaleString('pt-BR')}
+function dayName(d){return['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'][d.getDay()]}
+function isoStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
+
+// ─── CORE CALC ──────────────────────────────────────────────
+function calcularPlanejamento() {
+  const C = CONFIG;
+  const inicio = parseDate(C.missao.periodo.inicio);
+  const fim = parseDate(C.missao.periodo.fim);
+
+  // Generate calendar
+  const dias = [];
+  let cur = new Date(inicio);
+  while (cur <= fim) {
+    const iso = isoStr(cur);
+    const dow = cur.getDay();
+    const isDiaTrabalho = C.missao.diasTrabalho.includes(dow);
+    const isFeriado = C.feriadosNacionais.includes(iso);
+    const isCopa = C.jogosBrasilCopa.includes(iso);
+    const isProdutivo = isDiaTrabalho && !isFeriado && !isCopa;
+    dias.push({ date:new Date(cur), iso, dow, dayName:dayName(cur), isDiaTrabalho, isFeriado, isCopa, isProdutivo,
+      tipo: isFeriado?'feriado': isCopa&&isDiaTrabalho?'copa': !isDiaTrabalho?'folga':'produtivo' });
+    cur = addDays(cur, 1);
+  }
+  const diasProdutivos = dias.filter(d => d.isProdutivo);
+  const totalDiasProd = diasProdutivos.length;
+
+  // Reciclagem effective rate
+  const prodRecicl = C.reciclagem.producaoDiaria_m2 * C.reciclagem.fatorChuva;
+
+  // Stock calculations
+  const pl = C.placas;
+  const ins = pl.insumosPorPlaca;
+  const est = C.estoques;
+
+  // Barras: how many placas can we do with stock?
+  const placasComBarras = Math.floor(est.barrasTransferencia / ins.barrasTransferencia_un);
+  // Cement CP40: how many placas? (with 0% loss)
+  const placasComCP40_0pct = Math.floor(est.cimentoCP40_sacos / ins.cimentoCP40_sacos);
+  // Cement CP40 with loss
+  const sacosComPerda = ins.cimentoCP40_sacos * (1 + est.perdaCimento_pct / 100);
+  const placasComCP40_perda = Math.floor(est.cimentoCP40_sacos / sacosComPerda);
+  // Cement CP32: how many m² of reciclagem can be done with remaining CP32 after canaletas?
+  const cp32DisponivelParaReciclagem = Math.max(0, est.cimentoCP32_sacos - est.cimentoCP32_canaletas_sacos);
+  const reciclagemComCP32 = Math.floor(cp32DisponivelParaReciclagem / C.reciclagem.insumos.cimentoCP32_sacos_por_m2);
+
+  // Total needs
+  const totalCP40 = pl.totalExecutar * ins.cimentoCP40_sacos;
+  const totalCP40_perda = pl.totalExecutar * sacosComPerda;
+  const totalCP32_reciclagem = C.reciclagem.totalExecutar_m2 * C.reciclagem.insumos.cimentoCP32_sacos_por_m2;
+  const totalCP32_canaletas = est.cimentoCP32_canaletas_sacos;
+  const totalCP32 = totalCP32_reciclagem + totalCP32_canaletas;
+  const totalBarras = pl.totalExecutar * ins.barrasTransferencia_un;
+
+  // Day-by-day simulation
+  let placasAcum = 0, reciclagemAcum = 0, barrasUsadas = 0, cp40Usado = 0, cp32Usado = 0;
+  let reciclagemDone = false, placasDone = false, terraplIniciou = false, canalDrenIniciou = false;
+  let diaTerraplInicio = null, diaCanalDrenInicio = null;
+  let diaBarrasAcabam = null, diaCP40Acaba = null, diaCP32Acaba = null;
+  let diaProdNum = 0;
+  // Canaletas: first N productive days
+  let canDias = 0;
+
+  const cronograma = dias.map(d => {
+    const e = { ...d, placasDia:0, placasAcum:0, reciclagemDia:0, reciclagemAcum:0,
+      atividades:[], alertas:[], fase:'', canDia:false, terraplDia:false, canalDrenDia:false };
+
+    if (!d.isProdutivo) {
+      e.atividades.push(d.isFeriado ? '🏛️ Feriado' : d.isCopa ? '⚽ Jogo Brasil' : '🔴 Folga');
+      e.placasAcum = placasAcum; e.reciclagemAcum = reciclagemAcum;
+      return e;
+    }
+    diaProdNum++;
+
+    // Canaletas de concreto (first N days)
+    let cp32CanaletasHoje = 0;
+    if (canDias < C.canaletas.diasServico) {
+      e.canDia = true;
+      e.atividades.push(`🧱 Canaletas (${Math.ceil(C.canaletas.totalFaltantes / C.canaletas.diasServico)}/dia)`);
+      cp32CanaletasHoje = est.cimentoCP32_canaletas_sacos / C.canaletas.diasServico;
+      canDias++;
+    }
+
+    // Placas de concreto
+    if (!placasDone && placasAcum < pl.totalExecutar) {
+      // Check stock constraints
+      const barrasDisp = est.barrasTransferencia - barrasUsadas;
+      const placasBarrasHoje = Math.floor(barrasDisp / ins.barrasTransferencia_un);
+      const cp40Disp = est.cimentoCP40_sacos - cp40Usado;
+      const placasCP40Hoje = Math.floor(cp40Disp / ins.cimentoCP40_sacos);
+      const restantePlacas = pl.totalExecutar - placasAcum;
+
+      let producaoHoje = Math.min(pl.producaoDiaria, restantePlacas);
+
+      // Barras constraint
+      if (placasBarrasHoje < producaoHoje && !diaBarrasAcabam) {
+        diaBarrasAcabam = { date: new Date(d.date), placa: placasAcum + placasBarrasHoje, diaProd: diaProdNum };
+      }
+      if (placasBarrasHoje <= 0 && !diaBarrasAcabam) {
+        diaBarrasAcabam = { date: new Date(d.date), placa: placasAcum, diaProd: diaProdNum };
+      }
+
+      // CP40 constraint
+      if (placasCP40Hoje < producaoHoje && !diaCP40Acaba) {
+        diaCP40Acaba = { date: new Date(d.date), placa: placasAcum + placasCP40Hoje, diaProd: diaProdNum };
+      }
+
+      // Use minimum of all constraints (but for planning, assume resupply arrives)
+      e.placasDia = producaoHoje;
+      placasAcum += producaoHoje;
+      barrasUsadas += producaoHoje * ins.barrasTransferencia_un;
+      cp40Usado += producaoHoje * ins.cimentoCP40_sacos;
+
+      // Alerts
+      if (barrasUsadas > est.barrasTransferencia) {
+        e.alertas.push('⚠️ BARRAS: estoque esgotado');
+      }
+      if (cp40Usado > est.cimentoCP40_sacos) {
+        e.alertas.push('⚠️ CP40: estoque esgotado');
+      }
+
+      if (placasAcum >= pl.totalExecutar) {
+        placasDone = true;
+        e.atividades.push(`✅ ${producaoHoje} placas (FIM CONCRETAGEM)`);
+      } else {
+        e.atividades.push(`🧱 ${producaoHoje} placas`);
+      }
+    }
+
+    // Canaletas de drenagem (after concrete)
+    if (placasDone && !canalDrenIniciou) {
+      // starts next productive day after concrete finishes
+    }
+    if (placasDone && e.placasDia === 0 && !canalDrenIniciou) {
+      canalDrenIniciou = true;
+      diaCanalDrenInicio = new Date(d.date);
+    }
+    if (canalDrenIniciou) {
+      e.canalDrenDia = true;
+      e.atividades.push('🔧 Canaletas de Drenagem');
+    }
+    // Also mark on the day concrete finishes
+    if (placasDone && e.placasDia > 0 && !canalDrenIniciou) {
+      canalDrenIniciou = true;
+      diaCanalDrenInicio = new Date(d.date);
+      e.canalDrenDia = true;
+      e.atividades.push('🔧 Canaletas de Drenagem (INÍCIO)');
+    }
+
+    // Reciclagem
+    let cp32ReciclagemHoje = 0;
+    if (!reciclagemDone && reciclagemAcum < C.reciclagem.totalExecutar_m2) {
+      const restR = C.reciclagem.totalExecutar_m2 - reciclagemAcum;
+      let prodR = Math.min(prodRecicl, restR);
+      e.reciclagemDia = prodR;
+      reciclagemAcum += prodR;
+      cp32ReciclagemHoje = prodR * C.reciclagem.insumos.cimentoCP32_sacos_por_m2;
+
+      if (reciclagemAcum >= C.reciclagem.totalExecutar_m2) {
+        reciclagemDone = true;
+        e.atividades.push(`✅ ${fmtNum(prodR)}m² recicl. (FIM)`);
+      } else {
+        e.atividades.push(`♻️ ${fmtNum(prodR)}m² recicl.`);
+      }
+    }
+
+    // CP32 Stock Simulation
+    const cp32ConsumoHoje = cp32CanaletasHoje + cp32ReciclagemHoje;
+    if (cp32ConsumoHoje > 0) {
+      cp32Usado += cp32ConsumoHoje;
+
+      if (cp32Usado > est.cimentoCP32_sacos && !diaCP32Acaba) {
+        diaCP32Acaba = { date: new Date(d.date), diaProd: diaProdNum };
+      }
+      if (cp32Usado > est.cimentoCP32_sacos) {
+        e.alertas.push('⚠️ CP32: estoque esgotado');
+      }
+    }
+
+    // Terraplenagem (after reciclagem)
+    if (reciclagemDone && e.reciclagemDia === 0 && !terraplIniciou) {
+      terraplIniciou = true;
+      diaTerraplInicio = new Date(d.date);
+    }
+    if (reciclagemDone && e.reciclagemDia > 0 && !terraplIniciou) {
+      terraplIniciou = true;
+      diaTerraplInicio = new Date(d.date);
+    }
+    if (terraplIniciou) {
+      e.terraplDia = true;
+      if (e.atividades.findIndex(a=>a.includes('Terraplenagem'))===-1) {
+        e.atividades.push('🏗️ Terraplenagem');
+      }
+    }
+
+    e.placasAcum = placasAcum;
+    e.reciclagemAcum = reciclagemAcum;
+    return e;
+  });
+
+  // Weeks
+  const semanas = [];
+  let semAtual = [], semNum = 1;
+  cronograma.forEach((d, i) => {
+    semAtual.push(d);
+    if (d.dow === 0 || i === cronograma.length - 1) {
+      semanas.push({ num: semNum, dias: [...semAtual] });
+      semAtual = [];
+      semNum++;
+    }
+  });
+
+  // Milestone dates
+  const placasCompletaEm = cronograma.find(d => d.placasAcum >= pl.totalExecutar)?.date;
+  const reciclagemCompletaEm = cronograma.find(d => d.reciclagemAcum >= C.reciclagem.totalExecutar_m2)?.date;
+
+  // Copa days that affect
+  const diasCopaEfetivos = C.jogosBrasilCopa.filter(iso => {
+    const d = parseDate(iso);
+    return C.missao.diasTrabalho.includes(d.getDay()) && d >= inicio && d <= fim;
+  });
+
+  return {
+    dias, cronograma, diasProdutivos, totalDiasProd, semanas,
+    prodRecicl,
+    placasCompletaEm, reciclagemCompletaEm,
+    diaTerraplInicio, diaCanalDrenInicio,
+    diaBarrasAcabam, diaCP40Acaba, diaCP32Acaba,
+    placasComBarras, placasComCP40_0pct, placasComCP40_perda,
+    reciclagemComCP32,
+    totalCP40, totalCP40_perda, totalCP32, totalCP32_reciclagem, totalCP32_canaletas, totalBarras,
+    diasCopaEfetivos,
+    placasFinal: Math.min(placasAcum, pl.totalExecutar),
+    reciclagemFinal: Math.min(reciclagemAcum, C.reciclagem.totalExecutar_m2),
+  };
+}
+
+// ─── RENDER ─────────────────────────────────────────────────
+function render() {
+  const P = calcularPlanejamento();
+  const C = CONFIG;
+  const est = C.estoques;
+  const pl = C.placas;
+  const ins = pl.insumosPorPlaca;
+
+  const placasOK = P.placasFinal >= pl.totalExecutar;
+  const reciclOK = P.reciclagemFinal >= C.reciclagem.totalExecutar_m2;
+  const barrasDeficit = P.totalBarras - est.barrasTransferencia;
+  const cp40Deficit0 = P.totalCP40 - est.cimentoCP40_sacos;
+  const cp40DeficitPerda = P.totalCP40_perda - est.cimentoCP40_sacos;
+  const cp32Deficit = P.totalCP32 - est.cimentoCP32_sacos;
+
+  // Aditivos
+  const e350 = C.aditivos.eucon350;
+  const e370 = C.aditivos.eucon370;
+  const e350Saldo = e350.estoqueTambores - e350.tamboresNecessarios;
+  const e370Saldo = e370.estoqueTambores - e370.tamboresNecessarios;
+
+  // Day the bars run out (deadline for delivery)
+  const barrasDeadline = P.diaBarrasAcabam
+    ? `Barras acabam em <strong>${fmtDate(P.diaBarrasAcabam.date)}</strong> (após placa ${fmtInt(P.diaBarrasAcabam.placa)}, dia produtivo ${P.diaBarrasAcabam.diaProd})`
+    : 'Estoque de barras suficiente';
+
+  document.getElementById('app').innerHTML = `
+    <header class="header fade-in">
+      <span class="badge badge-mission">Missão ${C.missao.nome} · Jul/Ago 2026</span>
+      <h1>Planejamento Macro<br>${C.missao.local}</h1>
+      <p class="subtitle">${fmtDate(parseDate(C.missao.periodo.inicio))} a ${fmtDate(parseDate(C.missao.periodo.fim))} · ${C.missao.expediente} · Seg a Sex</p>
+    </header>
+
+    <div class="edit-notice fade-in">
+      <span class="icon">✏️</span>
+      <div><strong>Planejamento editável:</strong> Altere o objeto <code>CONFIG</code> no <code>&lt;script&gt;</code> deste arquivo e recarregue (F5) para reconfigurar tudo automaticamente.</div>
+    </div>
+
+    <!-- ═══ KPIs ═══ -->
+    <div class="kpi-grid">
+      <div class="kpi blue fade-in">
+        <div class="icon">🧱</div>
+        <div class="label">Placas de Concreto</div>
+        <div class="value">${fmtInt(P.placasFinal)}</div>
+        <div class="detail">de ${fmtInt(pl.totalExecutar)} · ${pl.producaoDiaria}/dia · ${Math.ceil(pl.totalExecutar/pl.producaoDiaria)} dias prod.</div>
+      </div>
+      <div class="kpi cyan fade-in">
+        <div class="icon">♻️</div>
+        <div class="label">Reciclagem</div>
+        <div class="value">${fmtInt(P.reciclagemFinal)} m²</div>
+        <div class="detail">de ${fmtInt(C.reciclagem.totalExecutar_m2)} · ${fmtNum(P.prodRecicl)} m²/dia efetivo</div>
+      </div>
+      <div class="kpi green fade-in">
+        <div class="icon">📅</div>
+        <div class="label">Dias Produtivos</div>
+        <div class="value">${P.totalDiasProd}</div>
+        <div class="detail">${P.dias.length} totais · ${P.dias.length - P.totalDiasProd} não-produtivos</div>
+      </div>
+      <div class="kpi gold fade-in">
+        <div class="icon">⚽</div>
+        <div class="label">Dias Copa</div>
+        <div class="value">${P.diasCopaEfetivos.length}</div>
+        <div class="detail">${P.diasCopaEfetivos.map(d=>fmtDateShort(parseDate(d))).join(', ')||'Nenhum'}</div>
+      </div>
+      <div class="kpi ${barrasDeficit > 0 ? 'red' : 'green'} fade-in">
+        <div class="icon">🔩</div>
+        <div class="label">Barras Transf.</div>
+        <div class="value">${fmtInt(est.barrasTransferencia)}</div>
+        <div class="detail">Necessário: ${fmtInt(P.totalBarras)} · ${barrasDeficit > 0 ? '⚠️ Falta '+fmtInt(barrasDeficit) : '✅ OK'}</div>
+      </div>
+      <div class="kpi ${cp40Deficit0 > 0 ? 'red' : 'gold'} fade-in">
+        <div class="icon">🏗️</div>
+        <div class="label">Cimento CP40</div>
+        <div class="value">${fmtInt(est.cimentoCP40_sacos)}</div>
+        <div class="detail">Necessário: ${fmtInt(P.totalCP40)} · ${cp40Deficit0 > 0 ? '⚠️ Falta '+fmtInt(cp40Deficit0) : 'Sobra '+fmtInt(-cp40Deficit0)}</div>
+      </div>
+      <div class="kpi ${cp32Deficit > 0 ? 'red' : 'green'} fade-in">
+        <div class="icon">🧱</div>
+        <div class="label">Cimento CP32</div>
+        <div class="value">${fmtInt(est.cimentoCP32_sacos)}</div>
+        <div class="detail">Necessário: ${fmtInt(P.totalCP32)} · ${cp32Deficit > 0 ? '⚠️ Falta '+fmtInt(cp32Deficit) : '✅ OK'}</div>
+      </div>
+      <div class="kpi orange fade-in">
+        <div class="icon">🏗️</div>
+        <div class="label">Terraplenagem</div>
+        <div class="value">${P.diaTerraplInicio ? fmtDateShort(P.diaTerraplInicio) : '—'}</div>
+        <div class="detail">Após reciclagem · Faixa de pista</div>
+      </div>
+    </div>
+
+    <!-- ═══ ALERTAS DE DESABASTECIMENTO ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--red)"></span> Alertas Críticos</div>
+      <h2>Desabastecimento & Restrições</h2>
+      <p>Datas limite para chegada de insumos — sem entrega, a produção para</p>
+    </div>
+
+    <div class="panel fade-in">
+      ${P.diaBarrasAcabam ? `
+      <div class="alert-box alert-danger">
+        <span class="icon">🚨</span>
+        <div>
+          <strong>BARRAS DE TRANSFERÊNCIA — Estoque insuficiente!</strong><br>
+          Estoque: <strong>${fmtInt(est.barrasTransferencia)} un</strong> · 
+          Necessário: <strong>${fmtInt(P.totalBarras)} un</strong> · 
+          Déficit: <strong>${fmtInt(barrasDeficit)} un</strong><br>
+          ${barrasDeadline}<br>
+          ⏰ <strong>Nova entrega deve chegar ANTES de ${fmtDate(P.diaBarrasAcabam.date)}</strong> ou a concretagem PARA.
+          São necessárias mais <strong>${fmtInt(barrasDeficit)}</strong> barras (mínimo ${fmtInt(barrasDeficit / ins.barrasTransferencia_un)} placas de produção).
+        </div>
+      </div>` : `
+      <div class="alert-box alert-success">
+        <span class="icon">✅</span>
+        <div><strong>Barras de Transferência:</strong> Estoque de ${fmtInt(est.barrasTransferencia)} un suficiente para ${fmtInt(P.totalBarras)} un necessárias.</div>
+      </div>`}
+
+      <div class="alert-box ${cp40Deficit0 > 0 ? 'alert-danger' : 'alert-warning'}">
+        <span class="icon">${cp40Deficit0 > 0 ? '🚨' : '⚠️'}</span>
+        <div>
+          <strong>CIMENTO CP40</strong><br>
+          Estoque: <strong>${fmtInt(est.cimentoCP40_sacos)} sacos</strong> · 
+          Necessário (perda 0%): <strong>${fmtInt(P.totalCP40)} sacos</strong> → 
+          ${cp40Deficit0 > 0 ? `<span style="color:var(--red)">Falta ${fmtInt(cp40Deficit0)} sacos</span>` : `Sobra ${fmtInt(-cp40Deficit0)} sacos`}<br>
+          Necessário (perda ${est.perdaCimento_pct}%): <strong>${fmtInt(P.totalCP40_perda)} sacos</strong> → 
+          <span style="color:var(--red)">Falta ${fmtInt(cp40DeficitPerda)} sacos</span><br>
+          ${P.diaCP40Acaba ? `⏰ CP40 acaba em <strong>${fmtDate(P.diaCP40Acaba.date)}</strong> (após placa ${fmtInt(P.diaCP40Acaba.placa)})` : 
+          `Cimento CP40 cobre ${fmtInt(P.placasComCP40_0pct)} placas a perda 0%, ${fmtInt(P.placasComCP40_perda)} placas a ${est.perdaCimento_pct}% perda`}
+        </div>
+      </div>
+
+      ${cp32Deficit > 0 ? `
+      <div class="alert-box alert-danger">
+        <span class="icon">🚨</span>
+        <div>
+          <strong>CIMENTO CP32 (Canaletas e Reciclagem) — CRÍTICO!</strong><br>
+          Estoque: <strong>${fmtInt(est.cimentoCP32_sacos)} sacos</strong><br>
+          Necessário Total: <strong>${fmtInt(P.totalCP32)} sacos</strong> 
+          (Canaletas: <strong>${fmtInt(est.cimentoCP32_canaletas_sacos)} sacos</strong> + Reciclagem: <strong>${fmtInt(P.totalCP32_reciclagem)} sacos</strong>)<br>
+          Déficit Total: <strong style="color:var(--red)">${fmtInt(cp32Deficit)} sacos</strong><br>
+          O estoque atual (${fmtInt(est.cimentoCP32_sacos)} sacos) não cobre sequer as canaletas de concreto (${fmtInt(est.cimentoCP32_canaletas_sacos)} sacos necessárias) e a reciclagem combinadas!<br>
+          ${P.diaCP32Acaba ? `⏰ CP32 acaba em <strong>${fmtDate(P.diaCP32Acaba.date)}</strong> (dia produtivo ${P.diaCP32Acaba.diaProd}) — a entrega deve chegar ANTES desta data.` : ''}
+        </div>
+      </div>` : ''}
+
+      <div class="alert-box alert-danger">
+        <span class="icon">🚨</span>
+        <div>
+          <strong>ADITIVOS — Estoque insuficiente!</strong><br>
+          <strong>${e350.nome}:</strong> Estoque: ${e350.estoqueTambores} tambores (${fmtInt(e350.estoqueTambores * e350.tamborVolume_L)}L) · 
+          Necessário: ${e350.tamboresNecessarios} tambores · 
+          <span style="color:var(--red)">⚠️ Faltam ${Math.abs(e350Saldo)} tambores (${fmtInt(Math.abs(e350Saldo) * e350.tamborVolume_L)}L)</span><br>
+          <strong>${e370.nome}:</strong> Estoque: ${e370.estoqueTambores} tambores (${fmtInt(e370.estoqueTambores * e370.tamborVolume_L)}L) · 
+          Necessário: ${e370.tamboresNecessarios} tambores · 
+          <span style="color:var(--red)">⚠️ Faltam ${Math.abs(e370Saldo)} tambores (${fmtInt(Math.abs(e370Saldo) * e370.tamborVolume_L)}L)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROGRESSO ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--green)"></span> Progresso Projetado</div>
+      <h2>Metas da Missão</h2>
+    </div>
+
+    <div class="panel fade-in">
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>🧱 Placas de Concreto — ${pl.dimensoes.espessura_cm}cm × ${pl.dimensoes.largura_m}×${pl.dimensoes.comprimento_m}m</span>
+          <span>${fmtInt(P.placasFinal)} / ${fmtInt(pl.totalExecutar)} (${Math.round(P.placasFinal/pl.totalExecutar*100)}%)</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill blue" style="width:${Math.min(100,P.placasFinal/pl.totalExecutar*100)}%"></div></div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">
+          ${placasOK ? '✅ Conclui em '+fmtDate(P.placasCompletaEm) : '⚠️ '+(P.placasCompletaEm ? fmtDate(P.placasCompletaEm) : 'Excede período')}
+          ${P.diaBarrasAcabam ? ` · ⚠️ Barras acabam ${fmtDateShort(P.diaBarrasAcabam.date)}` : ''}
+        </div>
+      </div>
+
+      <div class="progress-container" style="margin-top:16px">
+        <div class="progress-label">
+          <span>♻️ Reciclagem — ${C.reciclagem.producaoDiaria_m2} m²/dia × ${Math.round(C.reciclagem.fatorChuva*100)}% = ${fmtNum(P.prodRecicl)} m²/dia efetivo</span>
+          <span>${fmtInt(P.reciclagemFinal)} / ${fmtInt(C.reciclagem.totalExecutar_m2)} m² (${Math.round(P.reciclagemFinal/C.reciclagem.totalExecutar_m2*100)}%)</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill cyan" style="width:${Math.min(100,P.reciclagemFinal/C.reciclagem.totalExecutar_m2*100)}%"></div></div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">
+          ${reciclOK ? '✅ Conclui em '+fmtDate(P.reciclagemCompletaEm) : '⚠️ '+(P.reciclagemCompletaEm ? fmtDate(P.reciclagemCompletaEm) : 'Excede período')}
+          ${P.diaCP32Acaba ? ` · 🚨 CP32 acaba em ${fmtDateShort(P.diaCP32Acaba.date)}` : ''}
+          ${P.diaTerraplInicio ? ' → Terraplenagem inicia '+fmtDate(P.diaTerraplInicio) : ''}
+        </div>
+      </div>
+
+      <div class="progress-container" style="margin-top:16px">
+        <div class="progress-label">
+          <span>🔲 Canaletas de Concreto — ${C.canaletas.totalFaltantes} un em ${C.canaletas.diasServico} dias (paralelo)</span>
+          <span>${C.canaletas.totalFaltantes} un · ${Math.ceil(C.canaletas.totalFaltantes/C.canaletas.diasServico)} un/dia</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill gold" style="width:100%"></div></div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">✅ Executado nos primeiros ${C.canaletas.diasServico} dias junto com as demais atividades</div>
+      </div>
+    </div>
+
+    <!-- ═══ LINHA DO TEMPO ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--cyan)"></span> Fases</div>
+      <h2>Linha do Tempo da Missão</h2>
+    </div>
+
+    <div class="panel fade-in">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--accent)"></div>
+          <div class="tl-date">${fmtDate(parseDate(C.missao.periodo.inicio))}</div>
+          <div class="tl-title">🚀 Início da Missão</div>
+          <div class="tl-desc">Concretagem ${pl.producaoDiaria} placas/dia + Reciclagem ${fmtNum(P.prodRecicl)} m²/dia + Canaletas ${Math.ceil(C.canaletas.totalFaltantes/C.canaletas.diasServico)}/dia<br>Atividades contínuas: ${C.atividadesContinuas.map(a=>a.nome).join(', ')}</div>
+        </div>
+        ${P.diaCP32Acaba ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--red)"></div>
+          <div class="tl-date">${fmtDate(P.diaCP32Acaba.date)}</div>
+          <div class="tl-title">🚨 CP32 Acaba — Reciclagem em risco</div>
+          <div class="tl-desc">Estoque de ${fmtInt(est.cimentoCP32_sacos)} sacos cobre ${fmtInt(P.reciclagemComCP32)} m². Entrega urgente de ${fmtInt(cp32Deficit)} sacos necessária.</div>
+        </div>` : ''}
+        ${P.diaBarrasAcabam ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--red)"></div>
+          <div class="tl-date">${fmtDate(P.diaBarrasAcabam.date)}</div>
+          <div class="tl-title">🚨 Barras de Transferência Acabam</div>
+          <div class="tl-desc">Estoque de ${fmtInt(est.barrasTransferencia)} un se esgota. Entrega de ${fmtInt(barrasDeficit)} un deve chegar ANTES.</div>
+        </div>` : ''}
+        ${P.diasCopaEfetivos.length > 0 ? P.diasCopaEfetivos.map(iso => `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--accent2)"></div>
+          <div class="tl-date">${fmtDate(parseDate(iso))}</div>
+          <div class="tl-title">⚽ Jogo do Brasil — Copa 2026</div>
+          <div class="tl-desc">Dia não produtivo</div>
+        </div>`).join('') : ''}
+        ${P.diaCP40Acaba ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--orange)"></div>
+          <div class="tl-date">${fmtDate(P.diaCP40Acaba.date)}</div>
+          <div class="tl-title">⚠️ CP40 Acaba</div>
+          <div class="tl-desc">Estoque de ${fmtInt(est.cimentoCP40_sacos)} sacos se esgota após placa ${fmtInt(P.diaCP40Acaba.placa)}</div>
+        </div>` : ''}
+        ${P.reciclagemCompletaEm ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--cyan)"></div>
+          <div class="tl-date">${fmtDate(P.reciclagemCompletaEm)}</div>
+          <div class="tl-title">✅ Reciclagem Concluída</div>
+          <div class="tl-desc">${fmtInt(C.reciclagem.totalExecutar_m2)} m² · ${fmtInt(P.totalCP32)} sacos CP32 consumidos</div>
+        </div>` : ''}
+        ${P.diaTerraplInicio ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--orange)"></div>
+          <div class="tl-date">${fmtDate(P.diaTerraplInicio)}</div>
+          <div class="tl-title">🏗️ Início Terraplenagem</div>
+          <div class="tl-desc">Terraplenagem da faixa de pista — após reciclagem</div>
+        </div>` : ''}
+        ${P.placasCompletaEm ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--green)"></div>
+          <div class="tl-date">${fmtDate(P.placasCompletaEm)}</div>
+          <div class="tl-title">${placasOK ? '✅' : '📍'} Concretagem Concluída — ${fmtInt(pl.totalExecutar)} Placas</div>
+          <div class="tl-desc">Inicia alocação das canaletas de drenagem</div>
+        </div>` : ''}
+        ${P.diaCanalDrenInicio ? `
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--purple)"></div>
+          <div class="tl-date">${fmtDate(P.diaCanalDrenInicio)}</div>
+          <div class="tl-title">🔧 Início — Canaletas de Drenagem</div>
+          <div class="tl-desc">Alocação das canaletas de drenagem na pista</div>
+        </div>` : ''}
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--green)"></div>
+          <div class="tl-date">${fmtDate(parseDate(C.missao.periodo.fim))}</div>
+          <div class="tl-title">🏁 Fim da Missão</div>
+          <div class="tl-desc">Placas: ${fmtInt(P.placasFinal)}/${fmtInt(pl.totalExecutar)} · Recicl: ${fmtInt(P.reciclagemFinal)}/${fmtInt(C.reciclagem.totalExecutar_m2)} m²</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ INSUMOS ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--gold)"></span> Insumos</div>
+      <h2>Consumo Total vs Estoque</h2>
+      <p>Baseado em ${fmtInt(pl.totalExecutar)} placas + ${fmtInt(C.reciclagem.totalExecutar_m2)} m² reciclagem</p>
+    </div>
+
+    <div class="panel fade-in">
+      <div class="insumos-grid">
+        <div class="insumo-card ${cp40Deficit0 > 0 ? 'deficit' : 'ok'}">
+          <div class="insumo-icon cement">🧱</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Cimento CP40</div>
+            <div class="insumo-per">${ins.cimentoCP40_sacos} sac/placa · Est: ${fmtInt(est.cimentoCP40_sacos)}</div>
+          </div>
+          <div class="insumo-total"><span class="val" style="color:${cp40Deficit0>0?'var(--red)':'#fff'}">${fmtInt(P.totalCP40)}</span><span class="unit">sacos · ${cp40Deficit0>0?'⚠️ -'+fmtInt(cp40Deficit0):'✅'}</span></div>
+        </div>
+        <div class="insumo-card ${cp32Deficit > 0 ? 'deficit' : 'ok'}">
+          <div class="insumo-icon cement">🏗️</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Cimento CP32 (Tudo)</div>
+            <div class="insumo-per">Canaletas: ${fmtInt(est.cimentoCP32_canaletas_sacos)} sac · Reciclagem: ${C.reciclagem.insumos.cimentoCP32_sacos_por_m2} sac/m² · Est: ${fmtInt(est.cimentoCP32_sacos)}</div>
+          </div>
+          <div class="insumo-total"><span class="val" style="color:${cp32Deficit>0?'var(--red)':'#fff'}">${fmtInt(P.totalCP32)}</span><span class="unit">sacos · ${cp32Deficit>0?'⚠️ -'+fmtInt(cp32Deficit):'✅'}</span></div>
+        </div>
+        <div class="insumo-card ok">
+          <div class="insumo-icon aggregate">🪨</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Brita 0</div>
+            <div class="insumo-per">${ins.brita0_m3} m³/placa</div>
+          </div>
+          <div class="insumo-total"><span class="val">${fmtNum(pl.totalExecutar * ins.brita0_m3)}</span><span class="unit">m³</span></div>
+        </div>
+        <div class="insumo-card ok">
+          <div class="insumo-icon aggregate">🪨</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Brita 1</div>
+            <div class="insumo-per">${ins.brita1_m3} m³/placa</div>
+          </div>
+          <div class="insumo-total"><span class="val">${fmtNum(pl.totalExecutar * ins.brita1_m3)}</span><span class="unit">m³</span></div>
+        </div>
+        <div class="insumo-card ok">
+          <div class="insumo-icon sand">🏖️</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Areia</div>
+            <div class="insumo-per">${ins.areia_m3} m³/placa</div>
+          </div>
+          <div class="insumo-total"><span class="val">${fmtNum(pl.totalExecutar * ins.areia_m3)}</span><span class="unit">m³</span></div>
+        </div>
+        <div class="insumo-card ${e350Saldo < 0 ? 'deficit' : 'ok'}">
+          <div class="insumo-icon chemical">🧪</div>
+          <div class="insumo-info">
+            <div class="insumo-name">${e350.nome}</div>
+            <div class="insumo-per">${e350.estoqueTambores} tambores (${e350.tamborVolume_L}L) · Precisa ${e350.tamboresNecessarios} · ${e350Saldo < 0 ? 'Falta ' + Math.abs(e350Saldo) : 'Sobra ' + e350Saldo}</div>
+          </div>
+          <div class="insumo-total"><span class="val" style="color:${e350Saldo < 0 ? 'var(--red)' : 'var(--green)'}">${fmtInt(e350.consumoTotal_L)}</span><span class="unit">litros ${e350Saldo < 0 ? '⚠️' : '✅'}</span></div>
+        </div>
+        <div class="insumo-card ${e370Saldo < 0 ? 'deficit' : 'ok'}">
+          <div class="insumo-icon chemical">🧪</div>
+          <div class="insumo-info">
+            <div class="insumo-name">${e370.nome}</div>
+            <div class="insumo-per">${e370.estoqueTambores} tambores (${e370.tamborVolume_L}L) · Precisa ${e370.tamboresNecessarios} · ${e370Saldo < 0 ? 'Falta ' + Math.abs(e370Saldo) : 'Sobra ' + e370Saldo}</div>
+          </div>
+          <div class="insumo-total"><span class="val" style="color:${e370Saldo < 0 ? 'var(--red)' : 'var(--green)'}">${fmtInt(e370.consumoTotal_L)}</span><span class="unit">litros ${e370Saldo < 0 ? '⚠️' : '✅'}</span></div>
+        </div>
+        <div class="insumo-card ${barrasDeficit > 0 ? 'deficit' : 'ok'}">
+          <div class="insumo-icon steel">🔩</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Barras de Transferência</div>
+            <div class="insumo-per">${ins.barrasTransferencia_un} un/placa · Est: ${fmtInt(est.barrasTransferencia)}</div>
+          </div>
+          <div class="insumo-total"><span class="val" style="color:${barrasDeficit>0?'var(--red)':'#fff'}">${fmtInt(P.totalBarras)}</span><span class="unit">un · ${barrasDeficit>0?'⚠️ -'+fmtInt(barrasDeficit):'✅'}</span></div>
+        </div>
+        <div class="insumo-card ok">
+          <div class="insumo-icon geo">🌿</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Geocomposto</div>
+            <div class="insumo-per">${ins.geocomposto_m2} m²/placa · ✅ Suficiente</div>
+          </div>
+          <div class="insumo-total"><span class="val">${fmtInt(pl.totalExecutar * ins.geocomposto_m2)}</span><span class="unit">m² ✅</span></div>
+        </div>
+        <div class="insumo-card ok">
+          <div class="insumo-icon geo">📦</div>
+          <div class="insumo-info">
+            <div class="insumo-name">Lona</div>
+            <div class="insumo-per">✅ Verificado — suficiente</div>
+          </div>
+          <div class="insumo-total"><span class="val" style="color:var(--green)">OK</span><span class="unit">✅</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CRONOGRAMA ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--accent)"></span> Cronograma</div>
+      <h2>Cronograma Dia a Dia</h2>
+      <p>${fmtDate(parseDate(C.missao.periodo.inicio))} a ${fmtDate(parseDate(C.missao.periodo.fim))} · Linhas vermelhas = alerta de estoque</p>
+    </div>
+
+    ${P.semanas.map(sem => `
+    <div class="panel fade-in" style="margin-bottom:10px">
+      <h3 style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px">
+        📅 Semana ${sem.num} — ${fmtDateShort(sem.dias[0].date)} a ${fmtDateShort(sem.dias[sem.dias.length-1].date)}
+        <span style="font-weight:400;color:var(--text3);margin-left:8px;font-size:11px">
+          ${sem.dias.filter(d=>d.isProdutivo).length} dias prod.
+        </span>
+      </h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Dia</th><th>Data</th><th>Status</th>
+            <th>🧱 Placas</th><th>♻️ Recicl.</th><th>Atividades</th>
+            <th>Plac. Acum</th><th>Rec. Acum</th><th>Alertas</th>
+          </tr></thead>
+          <tbody>
+            ${sem.dias.map(d => `
+            <tr class="${d.tipo==='folga'?'weekend':''} ${d.tipo==='feriado'||d.tipo==='copa'?'holiday':''} ${d.alertas&&d.alertas.length>0?'alert-row':''} ${d.terraplDia&&!d.placasDia?'transition':''} ${d.atividades.some(a=>a.includes('FIM'))?'milestone':''}">
+              <td><strong>${d.dayName}</strong></td>
+              <td>${fmtDateShort(d.date)}</td>
+              <td>
+                ${d.tipo==='produtivo'?'<span class="tag tag-prod">Prod</span>':''}
+                ${d.tipo==='folga'?'<span class="tag tag-folga">Folga</span>':''}
+                ${d.tipo==='feriado'?'<span class="tag tag-feriado">Feriado</span>':''}
+                ${d.tipo==='copa'?'<span class="tag tag-copa">⚽</span>':''}
+              </td>
+              <td style="font-weight:${d.placasDia?'700':'400'};color:${d.placasDia?'#fff':'inherit'}">${d.placasDia||'—'}</td>
+              <td style="color:${d.reciclagemDia?'var(--cyan)':'inherit'}">${d.reciclagemDia?fmtNum(d.reciclagemDia)+'m²':'—'}</td>
+              <td style="font-size:11px">
+                ${d.canDia?'<span class="tag tag-canal">Can</span> ':''}
+                ${d.terraplDia?'<span class="tag tag-terra">Terra</span> ':''}
+                ${d.canalDrenDia?'<span class="tag tag-canal">Dren</span> ':''}
+                ${d.atividades.join(' · ')}
+              </td>
+              <td>${d.placasAcum?fmtInt(d.placasAcum):'—'}</td>
+              <td>${d.reciclagemAcum?fmtInt(d.reciclagemAcum)+'m²':'—'}</td>
+              <td style="font-size:10px">${d.alertas&&d.alertas.length?d.alertas.join('<br>'):'—'}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>`).join('')}
+
+    <!-- ═══ RESUMO ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--gold)"></span> Resumo</div>
+      <h2>Resumo Executivo</h2>
+    </div>
+
+    <div class="panel fade-in">
+      <div class="compare-grid">
+        <div class="compare-col">
+          <h3 style="color:var(--accent)">🎯 Metas & Estoques</h3>
+          <div class="compare-row"><span class="lbl">Placas de concreto</span><span class="val">${fmtInt(pl.totalExecutar)} un</span></div>
+          <div class="compare-row"><span class="lbl">Reciclagem</span><span class="val">${fmtInt(C.reciclagem.totalExecutar_m2)} m²</span></div>
+          <div class="compare-row"><span class="lbl">Canaletas</span><span class="val">${C.canaletas.totalFaltantes} un (${C.canaletas.diasServico} dias)</span></div>
+          <div class="compare-row"><span class="lbl">Dias produtivos</span><span class="val">${P.totalDiasProd} dias</span></div>
+          <div class="compare-row"><span class="lbl">Barras (estoque)</span><span class="val" style="color:${barrasDeficit>0?'var(--red)':'var(--green)'}">${fmtInt(est.barrasTransferencia)} / ${fmtInt(P.totalBarras)}</span></div>
+          <div class="compare-row"><span class="lbl">CP40 (estoque)</span><span class="val" style="color:${cp40Deficit0>0?'var(--red)':'var(--green)'}">${fmtInt(est.cimentoCP40_sacos)} / ${fmtInt(P.totalCP40)}</span></div>
+          <div class="compare-row"><span class="lbl">CP32 (estoque)</span><span class="val" style="color:var(--red)">${fmtInt(est.cimentoCP32_sacos)} / ${fmtInt(P.totalCP32)}</span></div>
+        </div>
+        <div class="compare-col">
+          <h3 style="color:var(--gold)">⚡ Projeção & Datas Críticas</h3>
+          <div class="compare-row"><span class="lbl">Conclusão placas</span><span class="val" style="color:var(--green)">${P.placasCompletaEm ? fmtDate(P.placasCompletaEm) : '—'}</span></div>
+          <div class="compare-row"><span class="lbl">Conclusão reciclagem</span><span class="val" style="color:var(--green)">${P.reciclagemCompletaEm ? fmtDate(P.reciclagemCompletaEm) : '—'}</span></div>
+          <div class="compare-row"><span class="lbl">Início terraplenagem</span><span class="val" style="color:var(--orange)">${P.diaTerraplInicio ? fmtDate(P.diaTerraplInicio) : '—'}</span></div>
+          <div class="compare-row"><span class="lbl">Início canal. drenagem</span><span class="val" style="color:var(--purple)">${P.diaCanalDrenInicio ? fmtDate(P.diaCanalDrenInicio) : '—'}</span></div>
+          <div class="compare-row"><span class="lbl">🚨 Barras acabam</span><span class="val" style="color:var(--red)">${P.diaBarrasAcabam ? fmtDate(P.diaBarrasAcabam.date) : '—'}</span></div>
+          <div class="compare-row"><span class="lbl">🚨 CP32 acaba</span><span class="val" style="color:var(--red)">${P.diaCP32Acaba ? fmtDate(P.diaCP32Acaba.date) : '—'}</span></div>
+          <div class="compare-row"><span class="lbl">⚠️ CP40 acaba</span><span class="val" style="color:var(--orange)">${P.diaCP40Acaba ? fmtDate(P.diaCP40Acaba.date) : 'Suficiente'}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ATIVIDADES CONTÍNUAS ═══ -->
+    <div class="section fade-in">
+      <div class="section-tag"><span class="dot" style="background:var(--orange)"></span> Atividades</div>
+      <h2>Atividades Contínuas & Observações</h2>
+    </div>
+
+    <div class="panel fade-in">
+      <div class="notes-grid">
+        ${C.atividadesContinuas.map(a => `
+        <div class="note-card">
+          <div class="nc-icon">${a.icone}</div>
+          <div class="nc-title">${a.nome}</div>
+          <div class="nc-desc">Atividade contínua ao longo de toda a missão. Prioridade: ${a.prioridade}.</div>
+        </div>`).join('')}
+        <div class="note-card">
+          <div class="nc-icon">🔲</div>
+          <div class="nc-title">Canaletas de Concreto</div>
+          <div class="nc-desc">${C.canaletas.totalFaltantes} unidades em ${C.canaletas.diasServico} dias (~${Math.ceil(C.canaletas.totalFaltantes/C.canaletas.diasServico)} un/dia). Em paralelo com demais atividades.</div>
+        </div>
+        <div class="note-card">
+          <div class="nc-icon">🔧</div>
+          <div class="nc-title">Canaletas de Drenagem</div>
+          <div class="nc-desc">Alocação na pista. Inicia após finalização da concretagem${P.diaCanalDrenInicio ? ' ('+fmtDate(P.diaCanalDrenInicio)+')' : ''}.</div>
+        </div>
+        <div class="note-card">
+          <div class="nc-icon">🏗️</div>
+          <div class="nc-title">Terraplenagem</div>
+          <div class="nc-desc">Faixa de pista. Inicia após reciclagem${P.diaTerraplInicio ? ' ('+fmtDate(P.diaTerraplInicio)+')' : ''}.</div>
+        </div>
+        <div class="note-card">
+          <div class="nc-icon">⛈️</div>
+          <div class="nc-title">Interferência de Chuva</div>
+          <div class="nc-desc">Reciclagem a ${Math.round(C.reciclagem.fatorChuva*100)}% (${fmtNum(P.prodRecicl)} m²/dia efetivo vs ${C.reciclagem.producaoDiaria_m2} ideal).</div>
+        </div>
+        <div class="note-card">
+          <div class="nc-icon">⚽</div>
+          <div class="nc-title">Copa do Mundo 2026</div>
+          <div class="nc-desc">${P.diasCopaEfetivos.length} dia(s) útil(is) perdido(s): ${P.diasCopaEfetivos.map(d=>fmtDateShort(parseDate(d))).join(', ')||'nenhum'}. Se eliminado, remova do CONFIG.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Planejamento Macro — Missão ${C.missao.nome} · ${C.missao.local}</p>
+      <p style="margin-top:4px">Documento editável · Gerado em ${new Date().toLocaleDateString('pt-BR')} · Altere <code style="background:rgba(255,255,255,0.05);padding:1px 5px;border-radius:3px">CONFIG</code> para reconfigurar</p>
+    </footer>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
