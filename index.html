@@ -235,7 +235,7 @@ const CONFIG = {
   // ─── ATIVIDADE PRINCIPAL: PLACAS DE CONCRETO ──────────────
   placas: {
     totalExecutar: 546,
-    producaoDiaria: 26,    // placas/dia produtivo
+    producaoDiaria: 30,    // placas/dia produtivo
     dimensoes: { espessura_cm: 29, largura_m: 3.75, comprimento_m: 4.5 },
     insumosPorPlaca: {
       cimentoCP40_sacos: 50,
@@ -409,7 +409,11 @@ function calcularPlanejamento() {
     }
 
     // Placas de concreto
-    if (!placasDone && placasAcum < pl.totalExecutar) {
+    const isQuintaFeira = (d.dow === 4);
+    if (isQuintaFeira && !placasDone) {
+      e.placasDia = 0;
+      e.atividades.push("📉 Correção Perda (0 placas)");
+    } else if (!placasDone && placasAcum < pl.totalExecutar) {
       // Check stock constraints
       const barrasDisp = est.barrasTransferencia - barrasUsadas;
       const placasBarrasHoje = Math.floor(barrasDisp / ins.barrasTransferencia_un);
